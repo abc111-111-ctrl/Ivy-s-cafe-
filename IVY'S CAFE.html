@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Ivy's Cafe</title>
+    <style>
+        body {
+            background-color: #fff8dc;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #d2691e;
+            text-shadow: 2px 2px 5px #8b4513;
+        }
+        .button-container, .choice-container, .guess-options {
+            margin-top: 30px;
+        }
+        button {
+            background-color: #ff4500;
+            color: white;
+            font-size: 18px;
+            padding: 15px 25px;
+            border: none;
+            margin: 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 4px #cd3700;
+        }
+        button:hover {
+            background-color: #ff6347;
+        }
+        button:active {
+            box-shadow: none;
+            transform: translateY(4px);
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #8b4513;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Ivy's Cafe!</h1>
+    <p>Experience a unique robotic dining adventure!</p>
+
+    <div class="button-container">
+        <button onclick="welcomeMessage()">Welcome to Ivy's Cafe</button>
+        <button onclick="creationJourney()">My Creation Journey</button>
+        <button onclick="showChefsPicks()">Chef's Picks</button>
+        <button onclick="guessTheDish()">Guess the Dish</button>
+        <button onclick="wantALaugh()">Want a Laugh?</button>
+        <button onclick="commentsPlease()">Comments Please</button>
+    </div>
+
+    <div class="choice-container hidden" id="chefs-picks-container">
+        <p>Choose your taste preference:</p>
+        <button onclick="spicyOption()">Spicy</button>
+        <button onclick="sweetOption()">Sweet</button>
+    </div>
+
+    <div class="guess-options hidden" id="guess-options">
+        <p>What is the answer?</p>
+        <button onclick="checkGuess('Pizza')">Pizza</button>
+        <button onclick="checkGuess('Burger')">Burger</button>
+        <button onclick="checkGuess('Pasta')">Pasta</button>
+        <button onclick="checkGuess('Sushi')">Sushi</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ivy's Cafe | Designed to delight your taste buds!</p>
+    </footer>
+
+    <script>
+        function speakText(text) {
+            var speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-US';
+            speech.pitch = 1;
+            speech.rate = 1;
+            speech.volume = 1;
+            window.speechSynthesis.speak(speech);
+        }
+
+        function welcomeMessage() {
+            speakText("Welcome to Ivy's Cafe! I am Ivy, your robo waiter. Let's enjoy a delightful experience together!");
+        }
+
+        function creationJourney() {
+            speakText("I was created by some young advanced minds wanting to display their innovative ideas. My creation journey involves several key stages, each focused on different aspects of building and bringing me to life. My creator sketched me out. A simple shape at first, but full of potential. They decided I’d need wheels to move, motors to power those wheels and sensors to interact with the world.");
+        }
+
+        function showChefsPicks() {
+            speakText("Choose your taste preference: Spicy or Sweet.");
+            document.getElementById("chefs-picks-container").classList.remove("hidden");
+        }
+
+        function spicyOption() {
+            speakText("I recommend: Spicy Paneer Tikka, Chilli Chicken, and Schezwan Noodles. Bon Appétit!");
+            document.getElementById("chefs-picks-container").classList.add("hidden");
+        }
+
+        function sweetOption() {
+            speakText("I recommend: Chocolate Brownie, Gulab Jamun, and Rasmalai. Enjoy your meal!");
+            document.getElementById("chefs-picks-container").classList.add("hidden");
+        }
+
+        function guessTheDish() {
+            speakText("Here is your clue: I am round, cheesy, and loved worldwide. What am I ?");
+            document.getElementById("guess-options").classList.remove("hidden");
+        }
+
+        function checkGuess(guess) {
+            const correctAnswer = "Pizza";
+            if (guess === correctAnswer) {
+                speakText("That's correct! The answer is Pizza. Well done!");
+            } else {
+                speakText("Oops, that's not correct. The answer is Pizza. Better luck next time!");
+            }
+            document.getElementById("guess-options").classList.add("hidden");
+        }
+
+        function wantALaugh() {
+            const jokes = [
+                "Why did the tomato turn red? Because it saw the salad dressing!",
+                "What kind of tea is hard to swallow? Reality.",
+                "Why don’t eggs tell jokes? Because they might crack up!"
+            ];
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            speakText(randomJoke);
+        }
+
+        function commentsPlease() {
+            speakText("Thank you for visiting Ivy's Cafe! It was great meeting you. I'd love to hear your opinion about me");
+        }
+    </script>
+
+</body>
+</html>
